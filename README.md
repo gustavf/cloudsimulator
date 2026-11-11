@@ -16,4 +16,4 @@ Open `index.html` in a browser with WebGL 2 (or serve the folder with any static
 
 ## Controls
 
-Drag to look around, scroll to zoom, `H` hides the panel, `Space` pauses motion.
+Drag to look around, scroll to zoom, `R` (or the Randomise clouds button) generates a new cloud layout with the same settings, `H` hides the panel, `Space` pauses motion.

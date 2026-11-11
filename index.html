@@ -73,7 +73,7 @@
 <body>
 <div id="stage"><canvas id="c"></canvas></div>
 <button id="toggle" title="Show controls (H)" aria-label="Show controls">☰</button>
-<div id="hint">Drag to look · scroll to zoom · <b>H</b> hides controls · <b>Space</b> pauses</div>
+<div id="hint">Drag to look · scroll to zoom · <b>R</b> randomises · <b>H</b> hides controls · <b>Space</b> pauses</div>
 
 <aside id="panel" aria-label="Cloud settings">
   <header>
@@ -83,6 +83,7 @@
   <div id="scroll">
     <h2>Scenes</h2>
     <div class="presets" id="presets"></div>
+    <button id="random" style="width:100%;margin:6px 0 0" title="New cloud layout, same settings (R)">Randomise clouds</button>
     <div id="groups"></div>
     <h2>Render</h2>
     <div class="pair">
@@ -736,10 +737,17 @@ function setPlaying(v){ playing=v; $("play").textContent=v?"Pause motion":"Resum
 $("play").addEventListener("click",()=>setPlaying(!playing));
 const togglePanel=()=>document.body.classList.toggle("hide");
 $("hide").addEventListener("click",togglePanel); $("toggle").addEventListener("click",togglePanel);
+function randomise(){
+  let s; do{ s=Math.floor(Math.random()*100); }while(s===P.seed);
+  P.seed=s; windOff=[Math.random()*400,Math.random()*4,Math.random()*400];
+  syncUI(); dirty();
+}
+$("random").addEventListener("click",randomise);
 $("dl").addEventListener("click",()=>{ if(!exportJob) startExport(); });
 addEventListener("keydown",e=>{
   if(e.target.tagName==="SELECT") return;
   if(e.key==="h"||e.key==="H") togglePanel();
+  else if((e.key==="r"||e.key==="R")&&!e.metaKey&&!e.ctrlKey) randomise();
   else if(e.key===" "&&e.target.tagName!=="BUTTON"&&e.target.tagName!=="INPUT"){ e.preventDefault(); setPlaying(!playing); }
 });
 
