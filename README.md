@@ -2,6 +2,8 @@
 
 A single-page WebGL 2 app that ray-marches volumetric clouds under a physically based sky, above an animated sea that reflects the clouds and carries their shadows. Everything lives in `index.html`; there is no build step and nothing to install (the MIT-licensed mp4-muxer library is inlined for video export).
 
+**Live:** https://gustavf.github.io/cloudsimulator/
+
 ## Run
 
 Open `index.html` in a browser with WebGL 2 (or serve the folder with any static server).
